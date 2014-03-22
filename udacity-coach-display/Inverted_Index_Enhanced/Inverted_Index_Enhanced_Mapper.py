@@ -3,6 +3,7 @@ import sys
 import csv
 import re
 import collections
+import urllib2
 
 def words(text): return re.findall('[a-z]+', text.lower()) 
 
@@ -12,7 +13,8 @@ def train(features):
         model[f] += 1
     return model
 
-NWORDS = train(words(file('big.txt').read()))
+#NWORDS = train(words(file('big.txt').read()))
+NWORDS = train(words(urllib2.open('http://www.norvig.com/big.txt').read()))
 
 alphabet = 'abcdefghijklmnopqrstuvwxyz'
 
